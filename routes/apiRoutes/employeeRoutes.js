@@ -4,7 +4,28 @@ const db = require('../../db/connection');
 
 //GET ALL EMPLOYEES
 router.get('/employee', (req, res) => {
-    const sql = `SELECT * FROM employee`;
+    const sql = `
+    SELECT 
+      employee.first_name AS first, 
+      employee.last_name AS last, 
+      employee.manager_id AS manager,
+      role.title AS title, 
+      role.salary AS salary, 
+      department.name AS department
+    FROM employee
+    JOIN role
+      ON employee.role_id = role.id
+    JOIN department
+      ON role.department_id = department.id
+      `;
+
+    // const sql = `
+    // SELECT employee.first_name, employee.last_name, employee.manager_id, 
+    //     `;
+
+        // JOIN employee 
+        // ON employee.manager_id = employee.first
+
     
     db.query(sql, (err, rows) => {
         if (err) {
