@@ -21,19 +21,20 @@ router.get('/employee', (req, res) => {
 
 //POST new employee
 router.post('/employee', ({ body }, res) => {
-    const errors = inputCheck(
-      body,
-      'first_name',
-      'last_name',
-      'role_id',
-      'manager_id'
-    );
-    if (errors) {
-      res.status(400).json({ error: errors });
-      return;
-    }
   
-    const sql = `INSERT INTO candidates (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`;
+    const sql = `
+    INSERT INTO employee (
+      first_name, 
+      last_name, 
+      role_id, 
+      manager_id) 
+    VALUES (
+      ?,
+      ?,
+      ?,
+      ?)
+      `;
+
     const params = [
       body.first_name,
       body.last_name,
@@ -48,9 +49,9 @@ router.post('/employee', ({ body }, res) => {
       }
       res.json({
         message: 'success',
-        data: body
+        data: body,
       });
-      console.log(`New employee added.`)
+      console.log(`New employee added. \n\n ${console.table(result)}`)
     });
   });
   
