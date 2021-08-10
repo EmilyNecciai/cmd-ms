@@ -4,33 +4,35 @@ const db = require('../../db/connection');
 
 //GET ALL EMPLOYEES
 router.get('/employee', (req, res) => {
-    const sql = `
-    SELECT 
-      employee.first_name AS first, 
-      employee.last_name AS last, 
-      role.title AS title, 
-      role.salary AS salary,
-      department.name AS department,
-      employee.manager_id AS manager
-    FROM employee
-    JOIN role
-      ON employee.role_id = role.id
-    JOIN department
-      ON role.department_id = department.id
-      `;
-    
-    db.query(sql, (err, rows) => {
-        if (err) {
-          res.status(500).json({ error: err.message });
-          return;
-        }
-        res.json({
-          message: 'success',
-          data: rows
-        });
-        console.table(rows);
-    });
+  const sql = `
+  SELECT 
+    employee.first_name AS first, 
+    employee.last_name AS last, 
+    role.title AS title, 
+    role.salary AS salary,
+    department.name AS department,
+    employee.manager_id AS manager
+  FROM employee
+  JOIN role
+    ON employee.role_id = role.id
+  JOIN department
+    ON role.department_id = department.id
+    `;
+  
+  db.query(sql, (err, rows) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({
+        message: 'success',
+        data: rows
+      });
+      console.table(rows);
+  });
 });
+
+
 
 //POST new employee
 router.post('/employee', ({ body }, res) => {

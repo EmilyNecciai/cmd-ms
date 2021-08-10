@@ -3,6 +3,14 @@ const db = require('./db/connection');
 const apiRoutes = require('./routes/apiRoutes');
 const inquirer = require("inquirer");
 
+// REQUIRE FUNCTIONS
+const getEmployees = require('./assets/js/getEmployees');
+const updateEmployee = require('./assets/js/updateEmployee');
+const addEmployee = require('./assets/js/addEmployee');
+const getDepartments = require('./assets/js/getDepartments');
+const addDepartment = require('./assets/js/addDepartment');
+const getRoles = require('./assets/js/getRoles');
+const addRole = require('./assets/js/addRole');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -44,11 +52,28 @@ function menu(){
       }
     ])
     .then((choice) => {
-      console.log(choice.menu)
-      // switch(choice.menu) {
-      //   case "View All Departments":
-      //     return getDept;
-      // }
+      // console.log(choice.menu)
+      if(choice.menu === "View All Departments" ) {
+        getDepartments(db, menu);
+
+      } else if(choice.menu === "View All Roles" ) {
+        getRoles(db, menu);
+
+      } else if(choice.menu === "View All Employees" ) {
+        getEmployees(db, menu);
+
+      } else if(choice.menu === "Add a Department" ) {
+        addDepartment(db, menu);
+
+      } else if(choice.menu === "Add a Role" ) {
+        addRole(db, menu);
+
+      } else if(choice.menu === "Add an Employee" ) {
+        addEmployee(db, menu);
+
+      } else if(choice.menu === "Update an Employee Role" ) {
+        updateEmployee(db, menu);
+      }
     })
   };
 
