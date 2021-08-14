@@ -6,12 +6,12 @@ var managerArr = [];
 
 function roleList(connection){
   connection.query(`
-  SELECT title FROM role
+  SELECT id FROM role
       `, 
       function (err, result){
           if (err) throw err;
           for (let i = 0; i < result.length; i++) {
-              roleArr.push(result[i].title);
+              roleArr.push(result[i].id);
           }
           return roleArr;
       })         
@@ -81,21 +81,21 @@ function addEmployee(connection, menu){
     .then(answer => {
       //Run cQ to get role id from title
 
-      console.log(answer.title)
+      // console.log(answer.title)
 
-      var roleId
+      // var roleId
 
-      connection.query(
-        `SELECT id FROM role
-        WHERE title = ${JSON.stringify(answer.title)}
-        `,
-        function (err, roleId){
-          console.log(roleId[0].id)
-          // TO DO - pull in the role id for use in the next cQ
-          if (err) throw err;
-          return roleId;
-        }
-      )
+      // connection.query(
+      //   `SELECT id FROM role
+      //   WHERE title = ${JSON.stringify(answer.title)}
+      //   `,
+      //   function (err, roleId){
+      //     console.log(roleId[0].id)
+      //     // TO DO - pull in the role id for use in the next cQ
+      //     if (err) throw err;
+      //     return roleId;
+      //   }
+      // )
 
       connection.query(`
       INSERT INTO employee (
@@ -106,7 +106,7 @@ function addEmployee(connection, menu){
         VALUES (
           ${JSON.stringify(answer.first_name)},
           ${JSON.stringify(answer.last_name)},
-          ${roleId},
+          ${JSON.stringify(answer.title)},
           ${JSON.stringify(answer.manager_id)})
           `,
           function (err, result){
