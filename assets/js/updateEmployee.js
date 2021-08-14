@@ -3,7 +3,7 @@
 const inquirer = require("inquirer");
 
 var roleArr = [];
-var empArr = [];
+var employeeArr = [];
 
 function roleList(connection){
   connection.query(`
@@ -18,36 +18,31 @@ function roleList(connection){
       })         
   } 
 
+function employeeIdList(connection){
 
-  function empIdList(connection){
-
-    connection.query(`
-    SELECT id FROM employee
-        `, 
-        function (err, result){
-            if (err) throw err;
-            for (let i = 0; i < result.length; i++) {
-                empArr.push(result[i].id);
-            }
-            // console.log(empArr)
-            return empArr;
-        })         
-    } 
-  
+  connection.query(`
+  SELECT id FROM employee
+      `, 
+      function (err, result){
+          if (err) throw err;
+          for (let i = 0; i < result.length; i++) {
+            employeeArr.push(result[i].id);
+          }
+          return employeeArr;
+      })         
+  } 
 
 function updateEmployee(connection, menu){
-    empIdList(connection);
-    roleList(connection);
-//   console.log(empArr)
-
-
+  roleList(connection);
+  employeeIdList(connection);
+    //   console.log(empArr)
   inquirer
   .prompt([
       {
         type: "list",
         name: "id",
         message: "Which employee would you like to update?",
-        choices: empArr
+        choices: employeeArr
         },
         {
         type: "list",
@@ -71,7 +66,6 @@ function updateEmployee(connection, menu){
         }
         )
       }
-    
 
 
-  module.exports = updateEmployee;
+module.exports = updateEmployee;

@@ -3,7 +3,7 @@
 const inquirer = require("inquirer");
 
 var roleArr = [];
-var managerArr = [];
+var employeeArr = [];
 
 
 function roleList(connection){
@@ -20,7 +20,7 @@ function roleList(connection){
   } 
 
 
-  function managerIdList(connection){
+  function employeeIdList(connection){
 
     connection.query(`
     SELECT id FROM employee
@@ -28,16 +28,16 @@ function roleList(connection){
         function (err, result){
             if (err) throw err;
             for (let i = 0; i < result.length; i++) {
-              managerArr.push(result[i].id);
+              employeeArr.push(result[i].id);
             }
-            return managerArr;
+            return employeeArr;
         })         
     } 
   
 
 function addEmployee(connection, menu){
   roleList(connection);
-  managerIdList(connection);
+  employeeIdList(connection);
 
   inquirer
   .prompt([
@@ -77,7 +77,7 @@ function addEmployee(connection, menu){
         type: "list",
         name: "manager_id",
         message: "What is the id of the new employee's manager?",
-        choices: managerArr
+        choices: employeeArr
         }
     ])
     .then(answer => {
@@ -120,5 +120,6 @@ function addEmployee(connection, menu){
         }
         )
       }
+    
     
 module.exports = addEmployee;
