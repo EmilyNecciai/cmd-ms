@@ -1,3 +1,5 @@
+// NOT DONE
+
 const inquirer = require("inquirer");
 
 function addRole(connection, menu){
@@ -6,12 +8,12 @@ function addRole(connection, menu){
       {
           type: "input",
           name: "name",
-          message: "What is the name of the new department?",
+          message: "What is the name of the new role?",
           validate: name => {
             if (name) {
             return true;
             } else {
-            console.log('You need to input a department name!');
+            console.log('You need to input a role name!');
             return false;
             }
         }

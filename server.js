@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/api', apiRoutes);
 
+// Welcome
 function init(){
   console.log(`
 ===========================================================================
@@ -33,6 +34,7 @@ The command line CMS application for all of your employee management needs.
   menu();  
 } ; 
 
+// Menu
 function menu(){
   inquirer
   .prompt([

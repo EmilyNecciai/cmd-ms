@@ -1,3 +1,5 @@
+// Good enough.
+
 const inquirer = require("inquirer");
 
 var roleArr = [];

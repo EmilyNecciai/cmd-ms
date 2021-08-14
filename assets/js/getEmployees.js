@@ -1,3 +1,5 @@
+// Done.
+
 function getEmployees(connection, menu){
     connection.query(`
     SELECT
@@ -13,6 +15,7 @@ function getEmployees(connection, menu){
             ON employee.role_id = role.id
         JOIN department
             ON role.department_id = department.id
+    ORDER BY employee.id ASC;
     `, 
     function (err, result){
         if (err) throw err;

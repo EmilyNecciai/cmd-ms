@@ -1,3 +1,5 @@
+// Done.
+
 const inquirer = require("inquirer");
 
 function addDepartment(connection, menu) {

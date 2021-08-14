@@ -1,10 +1,13 @@
+// Done.
+
 function getRoles(connection, menu){
     connection.query(`
-    SELECT role.title, role.salary, department.name 
+    SELECT role.id, role.title, role.salary, department.name 
         AS department_name
         FROM role 
         LEFT JOIN department 
         ON role.department_id = department.id
+        ORDER BY role.id ASC;
         `, 
         function (err, result){
             if (err) throw err;
