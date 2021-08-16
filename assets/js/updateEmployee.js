@@ -1,22 +1,9 @@
-// Not Done.
+// Done, but something is broken.
  
 const inquirer = require("inquirer");
 
-var roleArr = [];
 var employeeArr = [];
 
-function roleList(connection){
-  connection.query(`
-  SELECT id FROM role
-      `, 
-      function (err, result){
-          if (err) throw err;
-          for (let i = 0; i < result.length; i++) {
-              roleArr.push(result[i].id);
-          }
-          return roleArr;
-      })         
-  } 
 
 function employeeIdList(connection){
 
@@ -31,6 +18,22 @@ function employeeIdList(connection){
           return employeeArr;
       })         
   } 
+
+  var roleArr = [];
+
+function roleList(connection){
+  connection.query(`
+  SELECT id FROM role
+      `, 
+      function (err, result){
+          if (err) throw err;
+          for (let i = 0; i < result.length; i++) {
+              roleArr.push(result[i].id);
+          }
+          return roleArr;
+      })         
+  } 
+
 
 function updateEmployee(connection, menu){
   roleList(connection);

@@ -1,4 +1,4 @@
-// Good enough.
+// Done.
 
 const inquirer = require("inquirer");
 
