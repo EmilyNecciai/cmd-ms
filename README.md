@@ -17,9 +17,7 @@ This note-taker web app, Duly Noted, will allow anyone to title and write extens
 
 ### Demo 
 
-[Go to Demo Pt1 Codebase and Database Showcase](https://drive.google.com/file/d/13Wdm3dOADaGhDkOeWv0k_TZhcOB2sQP2/view) (Use `Ctrl + Click` to open the video in a new tab.)
-
-[Go to Demo Pt2 Walkthrough](https://drive.google.com/file/d/1awuhOQZEvMWYcRuLUDoOiUC85fGZIVA4/view) (Use `Ctrl + Click` to open the video in a new tab.)
+[Go to Demo & Codebase Walkthrough](https://drive.google.com/file/d/1KB70gilgBbpdFV3MCOMmaOJuAlPm_B-3/view) (Use `Ctrl + Click` to open the video in a new tab.)
 
 
 ## Project Descrtiption 
